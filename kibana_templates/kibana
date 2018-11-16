@@ -23,7 +23,7 @@ pidfile="/var/run/$name.pid"
 [ -r /etc/default/$name ] && . /etc/default/$name
 [ -r /etc/sysconfig/$name ] && . /etc/sysconfig/$name
 
-export NODE_OPTIONS="--max_old_space_size=256" ./bin/kibana
+export NODE_OPTIONS="--max_old_space_size=512" ./bin/kibana
 
 [ -z "$nice" ] && nice=0
 
