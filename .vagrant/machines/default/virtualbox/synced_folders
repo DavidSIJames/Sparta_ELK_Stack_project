@@ -1,0 +1,1 @@
+{"virtualbox":{"/home/vagrant/templates":{"guestpath":"/home/vagrant/templates","hostpath":"/Users/tech-a46/Desktop/elk_test/templates","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/tech-a46/Desktop/elk_test","disabled":false,"__vagrantfile":true}}}
