@@ -40,13 +40,13 @@ echo "deb https://artifacts.elastic.co/packages/6.x/apt stable main" | sudo tee 
 sudo apt-get update
 sudo apt-get install elasticsearch -y
 echo " "
-echo "================= Editing elasticsearch.yml ================="
+echo "================= Configuring elasticsearch ================="
 echo " "
 sudo chmod 777 /etc/elasticsearch
 sudo mv /etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml.old
-sudo cp /home/vagrant/templates/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
+sudo cp /home/vagrant/elasticsearch_templates/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
 sudo mv /etc/elasticsearch/jvm.options /etc/elasticsearch/jvm.options.old
-sudo cp /home/vagrant/templates/jvm.options /etc/elasticsearch/jvm.options
+sudo cp /home/vagrant/elasticsearch_templates/jvm.options /etc/elasticsearch/jvm.options
 echo "Done!"
 echo " "
 echo "================= Starting elasticsearch ================="
@@ -54,15 +54,6 @@ echo " "
 sudo systemctl enable elasticsearch
 sudo systemctl start elasticsearch
 echo "elasticsearch started!"
-echo " "
-echo "================= Installing nginx ================="
-echo " "
-sudo apt-get install nginx -y
-echo " "
-echo "================= Starting nginx ================="
-echo " "
-sudo systemctl enable nginx
-sudo systemctl start nginx
 echo " "
 echo "================= Provision Complete ================="
 echo " "
