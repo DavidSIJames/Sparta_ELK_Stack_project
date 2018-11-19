@@ -21,6 +21,11 @@ Vagrant.configure("2") do |config|
     kib.hostsupdater.aliases = ["kibana.local"]
     kib.vm.synced_folder "kibana_templates", "/home/vagrant/kibana_templates"
     kib.vm.provision "shell", path: "kibana_provision.sh", privileged: false
+  end
+  config.vm.define "logstash" do |log|
+    log.vm.box = "ubuntu/xenial64"
+    log.vm.network "private_network", ip: "192.168.10.55"
+    log.hostsupdater.aliases = ["logstash.local"]
 
   end
 end
