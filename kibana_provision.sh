@@ -57,8 +57,9 @@ sudo systemctl start nginx
 echo " "
 echo "================= Configuring nginx ================="
 echo " "
-sudo mv /etc/nginx/sites-available/default /etc/nginx/sites-available/default.ol
-sudo ln -s /home/vagrant/kibana_templates/proxy.conf /etc/nginx/sites-available/proxy.conf
+sudo mv /etc/nginx/sites-available/default /etc/nginx/sites-available/default.old
+sudo cp /home/vagrant/kibana_templates/proxy.conf /etc/nginx/sites-available/
+sudo ln -s /etc/nginx/sites-available/proxy.conf /etc/nginx/sites-enabled/proxy.conf
 sudo service nginx restart
 echo " "
 echo "================= Provision Complete ================="
