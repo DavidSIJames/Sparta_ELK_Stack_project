@@ -8,9 +8,19 @@ required_plugins.each do |plugin|
   end
 end
 Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu/xenial64"
-  config.vm.network "private_network", ip: "192.168.10.35"
-  config.hostsupdater.aliases = ["development.local"]
-  config.vm.synced_folder "elasticsearch_templates" , "/home/vagrant/elasticsearch_templates"
-  config.vm.provision "shell", path: "provision.sh", privileged: false
+  config.vm.define "elasticsearch" do |ela|
+    ela.vm.box = "ubuntu/xenial64"
+    ela.vm.network "private_network", ip: "192.168.10.35"
+    ela.hostsupdater.aliases = ["elastic.local"]
+    ela.vm.synced_folder "elasticsearch_templates" , "/home/vagrant/elasticsearch_templates"
+    ela.vm.provision "shell", path: "elasticsearch_provision.sh", privileged: false
+  end
+  config.vm.define "kibana" do |kib|
+    kib.vm.box = "ubuntu/xenial64"
+    kib.vm.network "private_network", ip: "192.168.10.45"
+    kib.hostsupdater.aliases = ["kibana.local"]
+    kib.vm.synced_folder "kibana_templates", "/home/vagrant/kibana_templates"
+    kib.vm.provision "shell", path: "kibana_provision.sh", privileged: false
+
+  end
 end
