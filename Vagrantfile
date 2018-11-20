@@ -15,6 +15,13 @@ Vagrant.configure("2") do |config|
     ela.vm.synced_folder "elasticsearch_templates" , "/home/vagrant/elasticsearch_templates"
     ela.vm.provision "shell", path: "elasticsearch_provision.sh", privileged: false
   end
+  config.vm.define "beats" do |beat|
+    beat.vm.box = "ubuntu/xenial64"
+    beat.vm.network "private_network", ip: "192.168.10.65"
+    beat.hostsupdater.aliases = ["beats.local"]
+    beat.vm.synced_folder "beats_templates", "/home/vagrant/beats_templates"
+    beat.vm.provision "shell", path: "beats_provision.sh", privileged: false
+  end
   config.vm.define "kibana" do |kib|
     kib.vm.box = "ubuntu/xenial64"
     kib.vm.network "private_network", ip: "192.168.10.45"
@@ -26,6 +33,7 @@ Vagrant.configure("2") do |config|
     log.vm.box = "ubuntu/xenial64"
     log.vm.network "private_network", ip: "192.168.10.55"
     log.hostsupdater.aliases = ["logstash.local"]
-
+    log.vm.synced_folder "logstash_templates", "/home/vagrant/logstash_templates"
+    log.vm.provision "shell", path: "logstash_provision.sh", privileged: false
   end
 end
