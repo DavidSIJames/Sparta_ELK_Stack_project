@@ -1,0 +1,1 @@
+{"virtualbox":{"/home/vagrant/beats_templates":{"guestpath":"/home/vagrant/beats_templates","hostpath":"/Users/tech-a46/Desktop/Sparta/DevOps/Sparta_ELK_Stack_project/beats_templates","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/tech-a46/Desktop/Sparta/DevOps/Sparta_ELK_Stack_project","disabled":false,"__vagrantfile":true}}}
