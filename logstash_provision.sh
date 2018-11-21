@@ -43,6 +43,7 @@ echo "================= Configuring Logstash ================="
 echo " "
 sudo mv /etc/logstash/jvm.options /etc/logstash/jvm.options.old
 sudo cp /home/vagrant/logstash_templates/jvm.options /etc/logstash/jvm.options
+sudo cp /home/vagrant/logstash_templates/syslog.conf /etc/logstash/conf.d/syslog.conf
 sudo apt-get install logstash -y
 echo "Done!"
 echo " "
@@ -50,6 +51,8 @@ echo "================= Starting Logstash ================="
 echo " "
 sudo systemctl enable logstash
 sudo systemctl start logstash
+cd /usr/share/logstash
+sudo bin/logstash -f /etc/logstash/conf.d/syslog.conf
 echo "Logstash started!"
 echo " "
 echo "================= Provision Complete ================="
