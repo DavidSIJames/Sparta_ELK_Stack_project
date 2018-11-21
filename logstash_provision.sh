@@ -51,8 +51,6 @@ echo "================= Starting Logstash ================="
 echo " "
 sudo systemctl enable logstash
 sudo systemctl start logstash
-cd /usr/share/logstash
-sudo bin/logstash -f /etc/logstash/conf.d/syslog.conf
 echo "Logstash started!"
 echo " "
 echo "================= Provision Complete ================="
