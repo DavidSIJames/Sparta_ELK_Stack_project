@@ -42,7 +42,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "beats2" do |beat|
     beat.vm.box = "ubuntu/xenial64"
     beat.vm.hostname = "beat-2"
-    beat.vm.network "private_network", ip: "192.168.10.65"
+    beat.vm.network "private_network", ip: "192.168.10.66"
     beat.hostsupdater.aliases = ["beats.local"]
     beat.vm.synced_folder "beats_templates", "/home/vagrant/beats_templates"
     beat.vm.provision "shell", path: "beats_provision.sh", privileged: false
