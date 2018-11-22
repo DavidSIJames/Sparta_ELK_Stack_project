@@ -33,18 +33,18 @@ echo "================== Installing Java =================="
 echo " "
 sudo apt-get install default-jre -y
 echo " "
-echo "================== Installing Logstash =================="
+echo "================== Installing and Configuring Logstash =================="
 echo " "
-wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
-echo "deb https://artifacts.elastic.co/packages/6.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-6.x.list
-sudo apt-get update
-sudo apt-get install logstash -y
-echo "================= Configuring Logstash ================="
-echo " "
-sudo mv /etc/logstash/jvm.options /etc/logstash/jvm.options.old
-sudo cp /home/vagrant/logstash_templates/jvm.options /etc/logstash/jvm.options
-sudo cp /home/vagrant/logstash_templates/syslog.conf /etc/logstash/conf.d/syslog.conf
-sudo apt-get install logstash -y
+wget https://artifacts.elastic.co/downloads/logstash/logstash-6.5.1.tar.gz
+tar -xvf logstash-6.5.1.tar.gz
+cp /home/vagrant/logstash_templates/syslog.conf /home/vagrant/logstash-6.5.1/
+export LS_HOME="/home/vagrant/logstash-6.5.1/"
+sudo mv /home/vagrant/logstash-6.5.1/config/startup.options /home/vagrant/logstash-6.5.1/config/startup.options.old
+sudo cp /home/vagrant/logstash_templates/startup.options /home/vagrant/logstash-6.5.1/config/startup.options
+sudo mv /home/vagrant/logstash-6.5.1/config/jvm.options /home/vagrant/logstash-6.5.1/config/jvm.options.old
+sudo cp /home/vagrant/logstash_templates/jvm.options /home/vagrant/logstash-6.5.1/config/jvm.options
+sudo cp /home/vagrant/logstash_templates/syslog.conf /home/vagrant/logstash-6.5.1/syslog.conf
+sudo $LS_HOME/bin/system-install $LS_HOME/config/startup.options systemd
 echo "Done!"
 echo " "
 echo "================= Starting Logstash ================="
