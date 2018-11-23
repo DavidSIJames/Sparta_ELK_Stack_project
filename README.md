@@ -969,3 +969,10 @@ output.elasticsearch:
   hosts: ["192.168.10.35:9200"]
 
 ```
+
+## Challenges
+Through out this project, our team faced a large number of challenges which presented us with unique problems to
+overcome. The most consequential of these are shown below:
+* Instance RAM shortage
+* Logstash pipeline
+* Researching ELK stack
